@@ -1,6 +1,6 @@
 # Short-term electricity demand forecasting for New Zealand
 
-Code for my IT8105 Machine Learning project (Whitecliffe, Assessment 2). It forecasts New Zealand's national half-hourly grid-supplied demand one day ahead and tests whether the delta-based, peak-weighted target of Bansal (2026) transfers from an Indian city to New Zealand. Persistence, Ridge regression, LightGBM, an LSTM and a patch Transformer are tuned on six expanding-window folds, and the winter of 2026 is held out and scored once.
+Code for my IT8105 Machine Learning project. It forecasts New Zealand's national half-hourly grid-supplied demand one day ahead and tests whether the delta-based, peak-weighted target of Bansal (2026) transfers from an Indian city to New Zealand. Persistence, Ridge regression, LightGBM, an LSTM and a patch Transformer are tuned on six expanding-window folds, and the winter of 2026 is held out and scored once.
 
 ## Data
 
