@@ -1,14 +1,14 @@
 {
  "ridge_alpha": 100.0,
  "lgbm_params": {
-  "num_leaves": 63,
-  "learning_rate": 0.06110324927942078,
-  "n_estimators": 1500,
-  "min_child_samples": 50,
-  "feature_fraction": 0.7801543751582268,
-  "bagging_fraction": 0.7483192096930324,
-  "lambda_l2": 5.094011902587738,
-  "max_depth": -1
+  "num_leaves": 15,
+  "learning_rate": 0.060799248196541096,
+  "n_estimators": 1000,
+  "min_child_samples": 100,
+  "feature_fraction": 0.7625547445760282,
+  "bagging_fraction": 0.9256081538664138,
+  "lambda_l2": 0.004654699829785963,
+  "max_depth": 6
  },
  "rule_variant": "per architecture: the target x loss combination with the lowest mean CV PW-MAE (RO2 candidate), plus the abs/L1 reference",
  "rule_final": "lowest mean CV PW-MAE among all carried variants whose mean CV MAE is within 5% of the best mean CV MAE",
@@ -17,9 +17,9 @@
    "abs",
    "none"
   ],
-  "delta_seasonal-bansal": [
+  "delta_seasonal-none": [
    "delta_seasonal",
-   "bansal"
+   "none"
   ]
  },
  "LSTM_variants": {
@@ -34,7 +34,7 @@
  },
  "LSTM_hp": {
   "dropout": 0.0,
-  "lr": 0.0014026045693810768,
+  "lr": 0.001402604569381077,
   "head_hidden": 64,
   "batch": 16,
   "hidden": 32,
@@ -45,79 +45,79 @@
    "abs",
    "none"
   ],
-  "delta_seasonal-none": [
+  "delta_seasonal-topdecile": [
    "delta_seasonal",
-   "none"
+   "topdecile"
   ]
  },
  "Transformer_hp": {
-  "dropout": 0.2,
-  "lr": 0.0009586785357308864,
+  "dropout": 0.1,
+  "lr": 0.002684573328924091,
   "head_hidden": 32,
   "batch": 16,
-  "d_model": 32,
-  "heads": 4,
+  "d_model": 64,
+  "heads": 2,
   "layers": 2
  },
- "final_model": "Transformer delta_seasonal-none",
+ "final_model": "Transformer delta_seasonal-topdecile",
  "candidates_cv": [
   {
    "name": "LightGBM abs-L1",
-   "MAE": 112.82,
-   "PW": 149.4
+   "MAE": 114.01,
+   "PW": 149.87
   },
   {
-   "name": "LightGBM delta_seasonal-bansal",
-   "MAE": 103.9,
-   "PW": 131.11
+   "name": "LightGBM delta_seasonal-none",
+   "MAE": 104.77,
+   "PW": 132.34
   },
   {
    "name": "LSTM abs-L1",
-   "MAE": 115.0,
-   "PW": 143.85
+   "MAE": 114.23,
+   "PW": 142.79
   },
   {
    "name": "LSTM delta_seasonal-none",
-   "MAE": 111.6,
+   "MAE": 111.62,
    "PW": 139.13
   },
   {
    "name": "Transformer abs-L1",
-   "MAE": 105.4,
-   "PW": 133.44
+   "MAE": 104.54,
+   "PW": 133.05
   },
   {
-   "name": "Transformer delta_seasonal-none",
-   "MAE": 103.06,
-   "PW": 127.93
+   "name": "Transformer delta_seasonal-topdecile",
+   "MAE": 104.17,
+   "PW": 129.42
   }
  ],
  "LSTM_main_tag": "delta_seasonal-none",
- "Transformer_main_tag": "delta_seasonal-none",
- "shap_variant": "delta_seasonal-bansal",
+ "Transformer_main_tag": "delta_seasonal-topdecile",
+ "shap_variant": "delta_seasonal-none",
  "dm_pairs": [
   [
-   "Transformer delta_seasonal-none",
+   "Transformer delta_seasonal-topdecile",
    "Persistence D-1"
   ],
   [
-   "Transformer delta_seasonal-none",
+   "Transformer delta_seasonal-topdecile",
    "Persistence D-7"
   ],
   [
-   "Transformer delta_seasonal-none",
+   "Transformer delta_seasonal-topdecile",
    "Ridge"
   ],
   [
-   "Transformer delta_seasonal-none",
-   "LightGBM delta_seasonal-bansal"
+   "Transformer delta_seasonal-topdecile",
+   "LightGBM delta_seasonal-none"
   ],
   [
-   "Transformer delta_seasonal-none",
+   "Transformer delta_seasonal-topdecile",
    "LSTM delta_seasonal-none"
   ],
   [
-   "LightGBM delta_seasonal-bansal",
+   "LightGBM delta_seasonal-none",
    "LightGBM abs-L1"
   ],
   [
@@ -125,13 +125,13 @@
    "LSTM abs-L1"
   ],
   [
-   "Transformer delta_seasonal-none",
+   "Transformer delta_seasonal-topdecile",
    "Transformer abs-L1"
   ]
  ],
  "dm_pairs_pw": [
   [
-   "LightGBM delta_seasonal-bansal",
+   "LightGBM delta_seasonal-none",
    "LightGBM abs-L1"
   ],
   [
@@ -139,14 +139,14 @@
    "LSTM abs-L1"
   ],
   [
-   "Transformer delta_seasonal-none",
+   "Transformer delta_seasonal-topdecile",
    "Transformer abs-L1"
   ]
  ],
  "plot_models": [
-  "Transformer delta_seasonal-none",
-  "LightGBM delta_seasonal-bansal",
+  "Transformer delta_seasonal-topdecile",
+  "LightGBM delta_seasonal-none",
   "Ridge"
  ],
- "decided_at": "2026-10-27 21:32:59 NZDT"
+ "decided_at": "2026-10-30 16:31:41 NZDT"
 }

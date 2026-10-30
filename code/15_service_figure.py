@@ -11,7 +11,11 @@ def box(x, y, w, h, t, b, c):
 def arr(a, b, c, d): ax.annotate("", (c, d), (a, b), arrowprops=dict(arrowstyle="->", color=MUTED, lw=1))
 box(0.1, 2.6, 2.1, 1.8, "Inputs (daily, 23:30)", "metered GXP demand d−1\n(EMI / operator SCADA)\nweather forecast day d\n(3 cities, hourly)\nholiday calendar", COLORS[0])
 box(2.6, 2.6, 2.3, 1.8, "Validation + features", "schema & range checks\nDST-aware 48-slot grid\n25 features, same code\nas training (common.py)", COLORS[0])
-box(5.3, 2.6, 2.1, 1.8, "Inference", "saved pipeline:\nscalers + Transformer\n(5 seeds, 232 KB each)\n< 1 ms per forecast", COLORS[2])
+# size of one saved Transformer checkpoint, read from the run rather than typed in
+tag = json.load(open(os.path.join(TAB, "selection.json")))["Transformer_main_tag"]
+ckpt = os.path.join(MOD, f"Transformer_{tag}.pt")
+size = f"{os.path.getsize(ckpt) / 1024:.0f} KB each" if os.path.exists(ckpt) else "saved per seed"
+box(5.3, 2.6, 2.1, 1.8, "Inference", f"saved pipeline:\nscalers + Transformer\n(5 seeds, {size})\n< 1 ms per forecast", COLORS[2])
 box(7.8, 2.6, 2.1, 1.8, "Delivery", "REST API (JSON, 48 MW)\ndashboard for operators\nCSV to market systems\npeak alert if > threshold", COLORS[2])
 box(1.2, 0.2, 3.4, 1.8, "Monitoring", "daily MAE, TD-MAE, peak error\nvs persistence & Ridge fallbacks\ninput drift: PSI on demand,\ntemperature; alert on breach", COLORS[1])
 box(5.4, 0.2, 3.4, 1.8, "Retraining", "monthly expanding-window refit\n+ early retrain on drift alert\nchampion–challenger on last\n8 weeks before promotion", COLORS[1])

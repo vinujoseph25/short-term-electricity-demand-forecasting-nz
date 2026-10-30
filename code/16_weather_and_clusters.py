@@ -1,7 +1,7 @@
 """Step 16: post-hoc sensitivity analyses, run after model selection (they change no selection decision).
 
-A. Weather sensitivity of the selected model. The selected Transformer (delta-to-same-slot target, L1 loss,
-   tuned hyperparameters from selection.json) is retrained on the training period with five seeds, once with
+A. Weather sensitivity of the selected model. The selected Transformer (target, loss weighting and tuned
+   hyperparameters read from selection.json) is retrained on the training period with five seeds, once with
    observed target-day weather (as in the main results) and once with persistence weather (the same slot of
    day D-1, which is known at the forecast origin). Both are scored on the winter 2026 test set.
 B. Unsupervised day-type analysis. K-means clusters the standardised 48-slot demand profiles of the training
@@ -18,7 +18,7 @@ from scipy.stats import spearmanr
 
 sel = json.load(open(os.path.join(TAB, "selection.json")))
 hp = sel["Transformer_hp"]
-TARGET, WEIGHTS = "delta_seasonal", "none"
+TARGET, WEIGHTS = sel["Transformer_variants"][sel["Transformer_main_tag"]]   # the selected Transformer variant
 SEEDS = [42, 43, 44, 45, 46]
 g = load_grid()
 out = {}

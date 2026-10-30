@@ -19,7 +19,7 @@ INK, MUTED = "#0b0b0b", "#52514e"
 
 def set_style():
     import matplotlib as mpl
-    mpl.rcParams.update({"font.family": "serif", "font.serif": ["Liberation Serif", "DejaVu Serif"],
+    mpl.rcParams.update({"font.family": "serif", "font.serif": ["Liberation Serif", "Times New Roman", "Times", "DejaVu Serif"],
         "font.size": 9, "axes.titlesize": 10, "axes.labelsize": 9, "legend.fontsize": 8,
         "xtick.labelsize": 8, "ytick.labelsize": 8, "axes.spines.top": False, "axes.spines.right": False,
         "axes.edgecolor": MUTED, "axes.labelcolor": INK, "xtick.color": MUTED, "ytick.color": MUTED,

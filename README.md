@@ -28,9 +28,9 @@ Run the scripts in this order from `code/`:
     python 13_extra_figures.py; python 09_pipeline_figure.py; python 15_service_figure.py; python 14_vals.py
     python 16_weather_and_clusters.py   # post-hoc: persistence-weather rerun of the selected model, K-means day types
 
-Results, figures and saved models go to `out/`. Step 08 saves all five seeds of each neural network and its scaler statistics, so the five-seed ensemble can be reloaded. The full run takes about 8 hours on a 2-vCPU machine, mostly LSTM tuning and ablations.
+Results, figures and saved models go to `out/`. Step 08 saves all five seeds of each neural network and its scaler statistics, so the five-seed ensemble can be reloaded. The reported run took about 3 hours on an Apple-silicon MacBook Pro (macOS, CPU only), mostly LSTM tuning and ablations.
 
-`selection.json` is the selection file, written at 21:32 NZDT on 27 October 2026, before the test set was scored.
+`selection.json` is the selection file, written at 16:31 NZDT on 30 October 2026, before the test set was scored. Neural-network results can differ slightly between machines even with fixed seeds.
 
 ## Environment
 
