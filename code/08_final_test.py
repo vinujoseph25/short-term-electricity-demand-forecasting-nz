@@ -42,8 +42,12 @@ for arch in ["LSTM", "Transformer"]:
         for sd in SEEDS:
             p, info, model, sc = fit_predict(d, dtr, dte, arch, hp, target=t, weights=w, seed=sd, return_model=True)
             ps.append(p.ravel()); sm.append(flat_metrics(d, dte, p)); eps.append(info["best_epoch"])
+            # every seed's weights are saved, so the five-seed ensemble can be reloaded and averaged at serving time
+            torch.save(model.state_dict(), os.path.join(MOD, f"{arch}_{tag}_seed{sd}.pt"))
             if sd == 42:
                 torch.save(model.state_dict(), os.path.join(MOD, f"{arch}_{tag}.pt")); pickle.dump(info["history"], open(os.path.join(TAB, f"history_{arch}_{tag}.pkl"), "wb"))
+                # the scaler is fitted on the same training days for every seed, so one copy serves the whole ensemble
+                pickle.dump(vars(sc), open(os.path.join(MOD, f"{arch}_{tag}_scaler.pkl"), "wb"))
                 costs[f"{arch} {tag}"] = dict(n_params=info["n_params"])
         costs[f"{arch} {tag}"].update(train_s=(time.time() - t0) / len(SEEDS), best_epoch_mean=float(np.mean(eps)))
         add(f"{arch} {tag}", np.mean(ps, 0), sm)

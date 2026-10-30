@@ -18,6 +18,7 @@ res["yoy"] = yoy.round(1).to_dict(orient="index")
 # temperature correlations: corrected alignment vs naive file-row alignment used in A1
 h = g.assign(hr=g.ts.dt.floor("h")).groupby("hr")[["mw", "temp_avg3", "temp_popw", "temp_auc"]].mean()
 res["r_temp_avg3_corrected"] = h.mw.corr(h.temp_avg3); res["r_temp_popw"] = h.mw.corr(h.temp_popw); res["r_temp_akl"] = h.mw.corr(h.temp_auc)
+dm = g.groupby("date")[["mw", "temp_popw"]].mean(); res["r_daily_mean_temp_popw"] = dm.mw.corr(dm.temp_popw)
 raw = {}
 for c in ["Auckland", "Wellington", "Christchurch"]:
     w = pd.read_csv(os.path.join(ROOT, "data", f"{c}_weather_2024-09_2026-08.csv"), skiprows=3); raw[c] = w.iloc[:, 1].values

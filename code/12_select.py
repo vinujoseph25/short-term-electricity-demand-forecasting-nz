@@ -1,7 +1,7 @@
 """Step 12: fix every selection decision from the CV results BEFORE the test set is scored (writes selection.json)."""
-import subprocess
+import subprocess, sys
 from common import *
-subprocess.run(["python3", "11_cv_figures.py"], check=True, capture_output=True)
+subprocess.run([sys.executable, "11_cv_figures.py"], check=True, capture_output=True)
 S = pd.read_pickle(os.path.join(TAB, "ablation_summary.pkl"))
 rg = pd.read_csv(os.path.join(TAB, "tune_ridge.csv"))
 sel = dict(ridge_alpha=float(rg.loc[rg.MAE.idxmin(), "alpha"]), lgbm_params=json.load(open(os.path.join(TAB, "best_lgbm.json"))),

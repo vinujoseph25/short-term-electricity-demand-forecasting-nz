@@ -26,8 +26,9 @@ Run the scripts in this order from `code/`:
     python 08_final_test.py         # scores the held-out winter 2026 once
     python 10_test_analysis.py      # DM tests, bootstrap CIs, error analysis, SHAP, latency
     python 13_extra_figures.py; python 09_pipeline_figure.py; python 15_service_figure.py; python 14_vals.py
+    python 16_weather_and_clusters.py   # post-hoc: persistence-weather rerun of the selected model, K-means day types
 
-Results, figures and saved models go to `out/`. The full run takes about 8 hours on a 2-vCPU machine, mostly LSTM tuning and ablations.
+Results, figures and saved models go to `out/`. Step 08 saves all five seeds of each neural network and its scaler statistics, so the five-seed ensemble can be reloaded. The full run takes about 8 hours on a 2-vCPU machine, mostly LSTM tuning and ablations.
 
 `selection.json` is the selection file, written at 21:32 NZDT on 27 October 2026, before the test set was scored.
 

@@ -11,7 +11,7 @@ import numpy as np, pandas as pd, holidays
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, "data")
 OUT = os.path.join(ROOT, "data", "processed"); os.makedirs(OUT, exist_ok=True)
-TAB = os.path.join(ROOT, "out", "tables")
+TAB = os.path.join(ROOT, "out", "tables"); os.makedirs(TAB, exist_ok=True)
 TZ = "Pacific/Auckland"
 audit = {}
 
