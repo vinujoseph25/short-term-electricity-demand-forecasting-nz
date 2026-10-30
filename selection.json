@@ -1,0 +1,152 @@
+{
+ "ridge_alpha": 100.0,
+ "lgbm_params": {
+  "num_leaves": 63,
+  "learning_rate": 0.06110324927942078,
+  "n_estimators": 1500,
+  "min_child_samples": 50,
+  "feature_fraction": 0.7801543751582268,
+  "bagging_fraction": 0.7483192096930324,
+  "lambda_l2": 5.094011902587738,
+  "max_depth": -1
+ },
+ "rule_variant": "per architecture: the target x loss combination with the lowest mean CV PW-MAE (RO2 candidate), plus the abs/L1 reference",
+ "rule_final": "lowest mean CV PW-MAE among all carried variants whose mean CV MAE is within 5% of the best mean CV MAE",
+ "lgbm_variants": {
+  "abs-L1": [
+   "abs",
+   "none"
+  ],
+  "delta_seasonal-bansal": [
+   "delta_seasonal",
+   "bansal"
+  ]
+ },
+ "LSTM_variants": {
+  "abs-L1": [
+   "abs",
+   "none"
+  ],
+  "delta_seasonal-none": [
+   "delta_seasonal",
+   "none"
+  ]
+ },
+ "LSTM_hp": {
+  "dropout": 0.0,
+  "lr": 0.0014026045693810768,
+  "head_hidden": 64,
+  "batch": 16,
+  "hidden": 32,
+  "layers": 2
+ },
+ "Transformer_variants": {
+  "abs-L1": [
+   "abs",
+   "none"
+  ],
+  "delta_seasonal-none": [
+   "delta_seasonal",
+   "none"
+  ]
+ },
+ "Transformer_hp": {
+  "dropout": 0.2,
+  "lr": 0.0009586785357308864,
+  "head_hidden": 32,
+  "batch": 16,
+  "d_model": 32,
+  "heads": 4,
+  "layers": 2
+ },
+ "final_model": "Transformer delta_seasonal-none",
+ "candidates_cv": [
+  {
+   "name": "LightGBM abs-L1",
+   "MAE": 112.82,
+   "PW": 149.4
+  },
+  {
+   "name": "LightGBM delta_seasonal-bansal",
+   "MAE": 103.9,
+   "PW": 131.11
+  },
+  {
+   "name": "LSTM abs-L1",
+   "MAE": 115.0,
+   "PW": 143.85
+  },
+  {
+   "name": "LSTM delta_seasonal-none",
+   "MAE": 111.6,
+   "PW": 139.13
+  },
+  {
+   "name": "Transformer abs-L1",
+   "MAE": 105.4,
+   "PW": 133.44
+  },
+  {
+   "name": "Transformer delta_seasonal-none",
+   "MAE": 103.06,
+   "PW": 127.93
+  }
+ ],
+ "LSTM_main_tag": "delta_seasonal-none",
+ "Transformer_main_tag": "delta_seasonal-none",
+ "shap_variant": "delta_seasonal-bansal",
+ "dm_pairs": [
+  [
+   "Transformer delta_seasonal-none",
+   "Persistence D-1"
+  ],
+  [
+   "Transformer delta_seasonal-none",
+   "Persistence D-7"
+  ],
+  [
+   "Transformer delta_seasonal-none",
+   "Ridge"
+  ],
+  [
+   "Transformer delta_seasonal-none",
+   "LightGBM delta_seasonal-bansal"
+  ],
+  [
+   "Transformer delta_seasonal-none",
+   "LSTM delta_seasonal-none"
+  ],
+  [
+   "LightGBM delta_seasonal-bansal",
+   "LightGBM abs-L1"
+  ],
+  [
+   "LSTM delta_seasonal-none",
+   "LSTM abs-L1"
+  ],
+  [
+   "Transformer delta_seasonal-none",
+   "Transformer abs-L1"
+  ]
+ ],
+ "dm_pairs_pw": [
+  [
+   "LightGBM delta_seasonal-bansal",
+   "LightGBM abs-L1"
+  ],
+  [
+   "LSTM delta_seasonal-none",
+   "LSTM abs-L1"
+  ],
+  [
+   "Transformer delta_seasonal-none",
+   "Transformer abs-L1"
+  ]
+ ],
+ "plot_models": [
+  "Transformer delta_seasonal-none",
+  "LightGBM delta_seasonal-bansal",
+  "Ridge"
+ ],
+ "decided_at": "2026-10-27 21:32:59 NZDT"
+}

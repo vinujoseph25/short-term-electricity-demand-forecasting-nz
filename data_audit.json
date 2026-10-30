@@ -1,0 +1,68 @@
+{
+ "files": 24,
+ "raw_rows": 175210,
+ "raw_cols": 58,
+ "pocs": 223,
+ "days": 730,
+ "exact_duplicate_rows": 0,
+ "duplicate_keys": 0,
+ "negative_values": 0,
+ "unit": [
+  "kWh"
+ ],
+ "flow": [
+  "X"
+ ],
+ "status": [
+  "F"
+ ],
+ "pocs_per_month_min": 216,
+ "pocs_per_month_max": 222,
+ "days_by_tp_count": {
+  "46": 2,
+  "48": 726,
+  "50": 2
+ },
+ "dst_days": {
+  "2024-09-29": 46,
+  "2025-04-06": 50,
+  "2025-09-28": 46,
+  "2026-04-05": 50
+ },
+ "halfhours_true_time": 35040,
+ "slots_interpolated_spring_forward": 4,
+ "grid_rows": 35040,
+ "wx_Auckland_missing": 0,
+ "wx_Wellington_missing": 0,
+ "wx_Christchurch_missing": 0,
+ "holidays_in_window": [
+  "2024-10-28",
+  "2024-12-25",
+  "2024-12-26",
+  "2025-01-01",
+  "2025-01-02",
+  "2025-02-06",
+  "2025-04-18",
+  "2025-04-21",
+  "2025-04-25",
+  "2025-06-02",
+  "2025-06-20",
+  "2025-10-27",
+  "2025-12-25",
+  "2025-12-26",
+  "2026-01-01",
+  "2026-01-02",
+  "2026-02-06",
+  "2026-04-03",
+  "2026-04-06",
+  "2026-04-25",
+  "2026-04-27",
+  "2026-06-01",
+  "2026-07-10"
+ ],
+ "mw_mean": 4303.9,
+ "mw_sd": 726.4,
+ "mw_min": 2736.6,
+ "mw_max": 7106.2,
+ "tiwai_mean": 537.4
+}
