@@ -20,6 +20,6 @@ lg_sec = tl.fit_s.sum() * 6
 hm = lambda s: f"{s/3600:.1f} h" if s > 3600 else f"{s/60:.0f} min"
 vt = dict(t_ridge="<1 min", t_lgbm=hm(lg_sec), t_lstm=hm(ls.sec.sum()), t_tf=hm(tf.sec.sum()))
 save_json(vt, "vals_tuning.json"); V["dl_cost_ratio"] = f"{(ls.sec.mean()+tf.sec.mean())/2/(lg_sec/len(tl)):.0f}"
-V["total_runtime"] = "about 8 hours (dominated by LSTM tuning and ablations)"
+V["total_runtime"] = "about 3 hours on an Apple-silicon MacBook Pro, CPU only (about 8 hours on a 2-vCPU Linux machine); dominated by LSTM tuning and ablations"
 os.makedirs(os.path.join(ROOT, "report"), exist_ok=True)
 json.dump(V, open(os.path.join(ROOT, "report", "vals_auto.json"), "w"), indent=1, default=str); print(V); print(vt)

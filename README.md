@@ -27,11 +27,16 @@ Run the scripts in this order from `code/`:
     python 10_test_analysis.py      # DM tests, bootstrap CIs, error analysis, SHAP, latency
     python 13_extra_figures.py; python 09_pipeline_figure.py; python 15_service_figure.py; python 14_vals.py
     python 16_weather_and_clusters.py   # post-hoc: persistence-weather rerun of the selected model, K-means day types
+    python 17_report_checks.py      # supporting numbers for the report (target SDs, tuning cost ratios, peak timing)
 
 Results, figures and saved models go to `out/`. Step 08 saves all five seeds of each neural network and its scaler statistics, so the five-seed ensemble can be reloaded. The reported run took about 3 hours on an Apple-silicon MacBook Pro (macOS, CPU only), mostly LSTM tuning and ablations.
 
-`selection.json` is the selection file, written at 16:31 NZDT on 30 October 2026, before the test set was scored. Neural-network results can differ slightly between machines even with fixed seeds.
+`selection.json` is the selection file, written at 22:17 NZDT on 30 October 2026, before the test set was scored. Neural-network results can differ slightly between machines even with fixed seeds.
 
 ## Environment
 
 Python 3.13, pandas 3.0.5, numpy 2.5.3, scikit-learn 1.9.1, lightgbm 4.7.0, torch 2.14.1 (CPU), statsmodels 0.15.0, shap 0.54.1, holidays 0.107 and matplotlib 3.11.2 (see `requirements.txt`). The random seed is 42, and the neural networks are repeated with seeds 42 to 46.
+
+On macOS, LightGBM (Homebrew `libomp`) and PyTorch (its own bundled `libomp`) can crash with a segmentation fault when both load in one process (steps 08, 10 and 14). Install `libomp` with Homebrew and point the loader at PyTorch's copy before running those steps:
+
+    export DYLD_LIBRARY_PATH="$(python -c 'import torch, os; print(os.path.join(os.path.dirname(torch.__file__), "lib"))')"
