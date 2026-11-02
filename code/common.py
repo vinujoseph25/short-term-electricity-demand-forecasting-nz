@@ -93,7 +93,7 @@ def make_target(df, kind):
     raise ValueError(kind)
 
 def make_weights(y_abs, scheme, ref=None, lam=None):
-    """Peak weights computed on ABSOLUTE demand. ref = training-set demand used for thresholds."""
+    """Peak weights computed on absolute demand, not on the delta target. ref = training-set demand used for thresholds."""
     ref = y_abs if ref is None else ref; lam = PW_LAMBDA if lam is None else lam
     if scheme == "none": return np.ones(len(y_abs))
     if scheme == "bansal": return 1 + (lam - 1) * (y_abs > np.mean(ref))

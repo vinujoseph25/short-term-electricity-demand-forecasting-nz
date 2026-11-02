@@ -1,4 +1,4 @@
-"""Step 12: fix every selection decision from the CV results BEFORE the test set is scored (writes selection.json)."""
+"""Step 12: fix every selection decision from the CV results before the test set is scored (writes selection.json)."""
 import subprocess, sys
 from common import *
 subprocess.run([sys.executable, "11_cv_figures.py"], check=True, capture_output=True)

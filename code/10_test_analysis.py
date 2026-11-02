@@ -64,14 +64,14 @@ for k, m in enumerate(names):
 lo, hi = a.min() - 100, a.max() + 100; axs[1].plot([lo, hi], [lo, hi], color=MUTED, lw=.8, ls="--")
 axs[1].set_xlabel("Actual daily peak (MW)"); axs[1].set_ylabel("Forecast daily peak (MW)")
 fig.tight_layout(); savefig(fig, "fig_test_slot_peak"); plt.close(fig)
-# ---- SHAP for final LightGBM
+# ---- SHAP for the companion LightGBM (shap_variant in selection.json, seed 42), not the selected Transformer
 F = pd.read_pickle(os.path.join(PROC, "tab_observed_popw.pkl")); V = F[F.date >= TEST_START]
 art = joblib.load(os.path.join(MOD, f"lgbm_{sel['shap_variant']}.joblib")); feats = art["features"]
 ex = shap.TreeExplainer(art["model"]); sv = ex.shap_values(V[feats])
 imp = pd.Series(np.abs(sv).mean(0), index=feats).sort_values(); out["shap_mean_abs"] = imp.sort_values(ascending=False).round(1).to_dict()
 fig, ax = plt.subplots(figsize=(4.6, 3.6)); top = imp.tail(15)
 ax.barh(top.index, top.values, color=COLORS[0], height=.6); ax.set_xlabel("Mean |SHAP value| on test (MW of target)"); savefig(fig, "fig_shap"); plt.close(fig)
-# permutation importance by group on test (held-out), final LightGBM
+# group permutation importance on the held-out test winter, same companion LightGBM
 from common import FEATURE_GROUPS
 base = mae(V.y.values, art["model"].predict(V[feats]) + make_target(V, art["target"])[1]); rng = np.random.default_rng(SEED); perm = {}
 for gname, cols in FEATURE_GROUPS.items():

@@ -22,7 +22,7 @@ Run the scripts in this order from `code/`:
     python 06_tabular_ablations.py
     python 07_deep_ablations.py LSTM
     python 07_deep_ablations.py Transformer
-    python 12_select.py             # fixes all selection decisions BEFORE testing (runs 11_cv_figures.py)
+    python 12_select.py             # fixes every selection decision before testing (runs 11_cv_figures.py)
     python 08_final_test.py         # scores the held-out winter 2026 once
     python 10_test_analysis.py      # DM tests, bootstrap CIs, error analysis, SHAP, latency
     python 13_extra_figures.py; python 09_pipeline_figure.py; python 15_service_figure.py; python 14_vals.py

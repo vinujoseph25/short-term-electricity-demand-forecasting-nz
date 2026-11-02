@@ -1,5 +1,5 @@
 """Step 8: retrain the selected configurations on the full training period
-(1 Sep 2024 to 31 May 2026) and score the held-out winter 2026 test set ONCE.
+(data from 1 Sep 2024, target days 8 Sep 2024 to 31 May 2026) and score the held-out winter 2026 test set once.
 The variants were fixed from the CV results before this script was run (see out/tables/selection.json)."""
 import pickle, joblib, lightgbm as lgb
 from sklearn.pipeline import Pipeline

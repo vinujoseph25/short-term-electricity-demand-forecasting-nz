@@ -15,7 +15,7 @@ res["share_peak_in_winter_top_decile"] = float(g[g.mw >= g.mw.quantile(.9)].wint
 # year-on-year comparison (same months)
 yoy = g.assign(yr=np.where(g.dt < "2025-09-01", "Sep24-Aug25", "Sep25-Aug26")).groupby("yr").mw.agg(["mean", "max"])
 res["yoy"] = yoy.round(1).to_dict(orient="index")
-# temperature correlations: corrected alignment vs naive file-row alignment used in A1
+# temperature correlations: corrected alignment vs naive file-row alignment used in the proposal (Assessment 1)
 h = g.assign(hr=g.ts.dt.floor("h")).groupby("hr")[["mw", "temp_avg3", "temp_popw", "temp_auc"]].mean()
 res["r_temp_avg3_corrected"] = h.mw.corr(h.temp_avg3); res["r_temp_popw"] = h.mw.corr(h.temp_popw); res["r_temp_akl"] = h.mw.corr(h.temp_auc)
 dm = g.groupby("date")[["mw", "temp_popw"]].mean(); res["r_daily_mean_temp_popw"] = dm.mw.corr(dm.temp_popw)
